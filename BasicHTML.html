@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form with Skills</title>
+</head>
+<body>
+
+    <h1>Contact Form</h1>
+
+    <form action="/submit" method="POST">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+
+        <label for="course">Select Course:</label><br>
+        <select id="course" name="course">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="js">JavaScript</option>
+        </select><br><br>
+
+        <label>Skills:</label><br>
+        <input type="checkbox" id="html" name="skills" value="html">
+        <label for="html">HTML</label>
+        <input type="checkbox" id="css" name="skills" value="css">
+        <label for="css">CSS</label>
+        <input type="checkbox" id="js" name="skills" value="js">
+        <label for="js">JavaScript</label><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Skills List</h2>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ul>
+
+</body>
+</html>
