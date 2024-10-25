@@ -1,0 +1,105 @@
+import React, { useState } from 'react';
+import './App.css';
+
+function App() {
+  const [items, setItems] = useState([]);
+  const [newItem, setNewItem] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentItem, setCurrentItem] = useState({});
+
+  function addItem() {
+    if (!newItem) return;
+    const item = { id: items.length + 1, value: newItem };
+    setItems([...items, item]);
+    setNewItem('');
+  }
+
+  function editItem(item) {
+    setIsEditing(true);
+    setCurrentItem({ ...item });
+  }
+
+  function updateItem() {
+    setItems(items.map((item) => (item.id === currentItem.id ? currentItem : item)));
+    setIsEditing(false);
+    setCurrentItem({});
+  }
+
+  function deleteItem(id) {
+    setItems(items.filter((item) => item.id !== id));
+  }
+
+  return (
+    <div className="App">
+      <h1>Simple React CRUD App</h1>
+      <input
+        type="text"
+        placeholder="Add a new item"
+        value={newItem}
+        onChange={(e) => setNewItem(e.target.value)}
+      />
+      <button onClick={addItem}>Add</button>
+
+      {isEditing ? (
+        <div>
+          <input
+            type="text"
+            value={currentItem.value}
+            onChange={(e) => setCurrentItem({ ...currentItem, value: e.target.value })}
+          />
+          <button onClick={updateItem}>Update</button>
+        </div>
+      ) : null}
+
+      <ul>
+        {items.map((item) => (
+          <li key={item.id}>
+            {item.value}
+            <button onClick={() => editItem(item)}>Edit</button>
+            <button onClick={() => deleteItem(item.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+input {
+  padding: 8px;
+  margin: 5px;
+}
+button {
+  padding: 8px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
